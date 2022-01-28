@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement_Collisions : MonoBehaviour
 {
     MiniGameMovement player;
+   
     [SerializeField]
     char directionFromPlayer;    // which direction is this collider in relation to the player. U - up/above    D - down    L - left    R - right
     // Start is called before the first frame update
@@ -36,10 +37,29 @@ public class Movement_Collisions : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
+        switch (directionFromPlayer)
+        {
+            case 'U':
+                player.canMoveUp = false;
+                if (col.CompareTag("Cable"))
+                {
+                    //player.
+                }
+                break;
+            case 'D':
+                player.canMoveDown = false;
+                break;
+            case 'L':
+                player.canMoveLeft = false;
+                break;
+            case 'R':
+                player.canMoveRight = false;
+                break;
+        }
         //print(directionFromPlayer + " stating in collider");
         if (col.CompareTag("Cable"))
         {
-            player.cableInProximity = true;
+            //player.cableInProximity = true;
         }
     }
 
@@ -64,7 +84,10 @@ public class Movement_Collisions : MonoBehaviour
 
         if (col.CompareTag("Cable"))
         {
-            player.cableInProximity = false;
+            //player.cableInProximity = false;
+            
         }
     }
 }
+
+

@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Cable
+  tags: []
   layers:
   - Default
   - TransparentFX

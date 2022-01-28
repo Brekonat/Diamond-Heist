@@ -7,15 +7,15 @@ public class MiniGameMovement : MonoBehaviour
     // no gravity, player cannot fall
     // check square that player wants to move to before moving
 
-    Vector2 overlapBoxSize = new Vector2(0.9f, 0.9f);
-
     public bool canMoveUp = true;
     public bool canMoveDown = true;
     public bool canMoveRight = true;
     public bool canMoveLeft = true;
-    public bool cableInProximity = false;
 
-    char charDirection; // what direction the character is facing
+    public bool cableUp = false;
+    public bool cableDown = false;
+    public bool cableLeft = false;
+    public bool cableRight = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +27,6 @@ public class MiniGameMovement : MonoBehaviour
     void Update()
     {
         Move();
-        if (cableInProximity)
-        {
-            RotateCable();
-
-        }
     }
 
     void Move()
@@ -43,12 +38,17 @@ public class MiniGameMovement : MonoBehaviour
             if(!canMoveRight)
             {
                 // don't move to the right - perhaps try to move right but then go back
+                if (cableRight)
+                {
+                    
+                }
             }
             // move right by one square
             else
             {
-                transform.Translate(Vector3.right);
-                RotatePlayer('R');
+                transform.Translate(Vector3.right, Space.World);
+                //RotatePlayer('R');
+                transform.localEulerAngles = new Vector3(0, 0, 0);
             }
         }
         // player move Left
@@ -62,8 +62,9 @@ public class MiniGameMovement : MonoBehaviour
             // move Left by one square
             else
             {
-                transform.Translate(Vector3.left);
-                RotatePlayer('L');
+                transform.Translate(Vector3.left, Space.World);
+                //RotatePlayer('L');
+                transform.localEulerAngles = new Vector3(0, 0, 180);
             }
         }
         // player move up
@@ -77,8 +78,8 @@ public class MiniGameMovement : MonoBehaviour
             // move UP by one square
             else
             {
-                transform.Translate(Vector3.up);
-                RotatePlayer('U');
+                transform.Translate(Vector3.up, Space.World);
+                transform.localEulerAngles = new Vector3(0, 0, 90);
             }
         }
         // player move down
@@ -92,72 +93,9 @@ public class MiniGameMovement : MonoBehaviour
             // move down by one square
             else
             {
-                transform.Translate(Vector3.down);
-                RotatePlayer('D');
-
-            }
-        }
-    }
-
-    void RotatePlayer(char newRotation)
-    {
-        // if the desired rotation has changed, rotate the player by the specific amount
-        if (!charDirection.Equals(newRotation))
-        {
-            switch (newRotation)
-            {
-                case 'U': switch (charDirection)
-                    {
-                        case 'D': transform.Rotate(new Vector3(0, 0, 180));
-                            break;
-                        case 'L': transform.Rotate(new Vector3(0, 0, 90));
-                            break;
-                        case 'R': transform.Rotate(new Vector3(0, 0, -90));
-                            break;
-                    }
-                    break;
-                case 'D':
-                    switch (charDirection)
-                    {
-                        case 'U':
-                            transform.Rotate(new Vector3(0, 0, 180));
-                            break;
-                        case 'L':
-                            transform.Rotate(new Vector3(0, 0, -90));
-                            break;
-                        case 'R':
-                            transform.Rotate(new Vector3(0, 0, 90));
-                            break;
-                    }
-                    break;
-                case 'R':
-                    switch (charDirection)
-                    {
-                        case 'D':
-                            transform.Rotate(new Vector3(0, 0, -90));
-                            break;
-                        case 'L':
-                            transform.Rotate(new Vector3(0, 0, 180));
-                            break;
-                        case 'U':
-                            transform.Rotate(new Vector3(0, 0, 90));
-                            break;
-                    }
-                    break;
-                case 'L':
-                    switch (charDirection)
-                    {
-                        case 'D':
-                            transform.Rotate(new Vector3(0, 0, 90));
-                            break;
-                        case 'U':
-                            transform.Rotate(new Vector3(0, 0, -90));
-                            break;
-                        case 'R':
-                            transform.Rotate(new Vector3(0, 0, 180));
-                            break;
-                    }
-                    break;
+                transform.Translate(Vector3.down, Space.World);
+                //RotatePlayer('D');
+                transform.localEulerAngles = new Vector3(0, 0, -90);
             }
         }
     }
