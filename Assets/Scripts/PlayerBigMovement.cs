@@ -41,9 +41,14 @@ public class PlayerBigMovement : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemies" && Input.GetKeyDown(KeyCode.K))
+        if (other.gameObject.tag == "Enemies" && Input.GetKeyDown(KeyCode.Space))
         {
             Destroy(other.gameObject);
+        }
+        // destroys other breakable object
+        else if (other.CompareTag("Breakable") && Input.GetKeyDown(KeyCode.Space))
+        {
+            other.GetComponent<Breakable>().Wreck();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

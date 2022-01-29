@@ -13,6 +13,8 @@ TagManager:
   - player_small
   - player_big
   - Door
+  - Flipper
+  - Breakable
   layers:
   - Default
   - TransparentFX
