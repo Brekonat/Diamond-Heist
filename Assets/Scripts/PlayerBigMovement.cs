@@ -13,6 +13,8 @@ public class PlayerBigMovement : MonoBehaviour
     private bool grounded;
     [SerializeField] private Vector3 hitboxDirectionOffset = new Vector3(2, 0, 0);
     public bool swappedPlayerBig = true;
+    Animator animator;
+    private SpriteRenderer sp;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class PlayerBigMovement : MonoBehaviour
         hitboxDirectionOffset = new Vector3(2, 0, 0);
         hitBox = GetComponent<BoxCollider2D>();
         swappedPlayerBig = true;
+        animator = GetComponentInChildren<Animator>();
+        sp = GetComponent<SpriteRenderer>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,7 +32,7 @@ public class PlayerBigMovement : MonoBehaviour
             grounded = true;
             //print(grounded);
         }
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("player_small"))
         {
             swappedPlayerBig = false;
             print(swappedPlayerBig);
@@ -53,11 +57,27 @@ public class PlayerBigMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print(rb.velocity);
+        if (rb.velocity.x > 0)
+        {
+            animator.SetBool("Iswalking", true);
+            sp.flipX = false;
+        }
+        else if (rb.velocity.x < -1)
+        {
+            animator.SetBool("Iswalking", true);
+            sp.flipX = true;
+        }
+        else
+        {
+            animator.SetBool("Iswalking", false);
+            sp.flipX = false;
+        }
 
-        if (Input.GetKey(KeyCode.Tab) && swappedPlayerBig == true)//if you press tab and you aren't big
+        if (Input.GetKey(KeyCode.Tab) && swappedPlayerBig == true)//if you press tab and you are big
         {
             print(swappedPlayerBig);
-            swappedPlayerBig = false;
+            swappedPlayerBig = false; //no longer big
         }
         if (swappedPlayerBig == true)
             {
@@ -66,18 +86,20 @@ public class PlayerBigMovement : MonoBehaviour
                 rb.velocity = new Vector2(speed, rb.velocity.y);
                 hitboxDirectionOffset = new Vector3(2, 0, 0);
                 hitBox.offset = new Vector3(1.00228f, 0, 0);
+
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
                 hitboxDirectionOffset = new Vector3(-2, 0, 0);
                 hitBox.offset = new Vector3(-1.00228f, 0, 0);
+
             }
             else
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
-            if (Input.GetKey(KeyCode.Space) && grounded)
+            if (Input.GetKey(KeyCode.W) && grounded)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             }

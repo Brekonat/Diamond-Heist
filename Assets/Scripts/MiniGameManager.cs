@@ -10,6 +10,8 @@ public class MiniGameManager : MonoBehaviour
     Cable endCable;
     [SerializeField]
     MiniGameMovement player;
+    [SerializeField]
+    GameManager manager;
 
     [SerializeField]    // only to see the value in the inspector
     bool puzzleComplete = false;
@@ -18,10 +20,10 @@ public class MiniGameManager : MonoBehaviour
     float timeLeft = 60f;
     [SerializeField]
     float timeToCompletePuzzle = 60f;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     public void RemoveTimer()
@@ -119,6 +121,7 @@ public class MiniGameManager : MonoBehaviour
                 {
                     // the puzzle is complete, do something
                     puzzleComplete = true;
+                    manager.LeavePuzzle(transform.parent.gameObject);
                 }
             }
         }

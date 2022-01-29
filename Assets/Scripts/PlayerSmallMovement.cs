@@ -10,11 +10,13 @@ public class PlayerSmallMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 6;
     public bool swappedPlayerSmall = false;
     private bool grounded;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,7 +25,7 @@ public class PlayerSmallMovement : MonoBehaviour
             grounded = true;
             //print(grounded);
         }
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("player_big"))
         {
             FindObjectOfType<PlayerBigMovement>().swappedPlayerBig = true;
             swappedPlayerSmall = false;
