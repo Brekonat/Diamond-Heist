@@ -15,6 +15,10 @@ public class PlayerBigMovement : MonoBehaviour
     public bool swappedPlayerBig = true;
     Animator animator;
     private SpriteRenderer sp;
+    public enum Sounds { BigFootStep }
+    public AudioClip[] footStepAudio;
+    public AudioSource BigAudioSource;
+    public AudioClip Punchclip;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,7 @@ public class PlayerBigMovement : MonoBehaviour
         swappedPlayerBig = true;
         animator = GetComponentInChildren<Animator>();
         sp = GetComponent<SpriteRenderer>();
+        BigAudioSource = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,15 +44,28 @@ public class PlayerBigMovement : MonoBehaviour
         }
 
     }
+    void FootSounds()
+    {
+        AudioSource.PlayClipAtPoint(footStepAudio[Random.Range(0, footStepAudio.Length)], new Vector2(rb.position.x, rb.position.y));
+        // select a random one from the array
+    }
+    void Stoppunching()
+    {
+        animator.SetBool("Punching", false);
+    }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemies" && Input.GetKeyDown(KeyCode.Space))
+        if (other.gameObject.tag == "Enemies" && Input.GetKeyDown(KeyCode.K))
         {
+            animator.SetBool("Punching", true);
+            AudioSource.PlayClipAtPoint(Punchclip, new Vector2(rb.position.x, rb.position.y));
             Destroy(other.gameObject);
         }
         // destroys other breakable object
         else if (other.CompareTag("Breakable") && Input.GetKeyDown(KeyCode.Space))
         {
+            animator.SetBool("Punching", true);
+            AudioSource.PlayClipAtPoint(Punchclip, new Vector2(rb.position.x, rb.position.y));
             other.GetComponent<Breakable>().Wreck();
         }
     }
@@ -84,34 +102,37 @@ public class PlayerBigMovement : MonoBehaviour
             print(swappedPlayerBig);
             swappedPlayerBig = false; //no longer big
         }
-        if (swappedPlayerBig == true)
-            {
             if (Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
-                hitboxDirectionOffset = new Vector3(2, 0, 0);
-                hitBox.offset = new Vector3(1.00228f, 0, 0);
+                if (swappedPlayerBig == true)
+                {
+                    rb.velocity = new Vector2(speed, rb.velocity.y);
+                    hitboxDirectionOffset = new Vector3(1, 0, 0);
+                    hitBox.offset = new Vector3(0.5238624f, 0, 0);
 
+                }
             }
             else if (Input.GetKey(KeyCode.A))
             {
+                if (swappedPlayerBig == true)
+                {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
-                hitboxDirectionOffset = new Vector3(-2, 0, 0);
-                hitBox.offset = new Vector3(-1.00228f, 0, 0);
-
+                hitboxDirectionOffset = new Vector3(-1, 0, 0);
+                hitBox.offset = new Vector3(-0.5238624f, 0, 0);
+                }
             }
             else
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
-            if (Input.GetKey(KeyCode.W) && grounded)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            }
-        }
+            //if (Input.GetKey(KeyCode.W) && grounded)
+            //{
+            //    rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            //}
+
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position + hitboxDirectionOffset, new Vector2(4,2));
+        //Gizmos.DrawWireCube(transform.position + hitboxDirectionOffset, new Vector2(4,2));
     }
 }

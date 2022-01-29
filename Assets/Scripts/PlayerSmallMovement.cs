@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class PlayerSmallMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rbsmall;
     private CapsuleCollider2D col;
     [SerializeField] private float speed = 8;
     [SerializeField] private float jumpSpeed = 6;
     public bool swappedPlayerSmall = false;
     private bool grounded;
     Animator animator;
-
+    private SpriteRenderer sp;
+    public enum Sounds { FootStep }
+    public AudioClip[] footStepAudio;
+    public AudioSource SmallAudioSource;
+    public AudioClip jumpclip;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rbsmall = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        sp = GetComponent<SpriteRenderer>();
+        SmallAudioSource = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -24,6 +30,7 @@ public class PlayerSmallMovement : MonoBehaviour
         {
             grounded = true;
             //print(grounded);
+            animator.SetBool("Jumping", false);
         }
         if (collision.collider.CompareTag("player_big"))
         {
@@ -48,32 +55,43 @@ public class PlayerSmallMovement : MonoBehaviour
         {
             print(swappedPlayerSmall);
             swappedPlayerSmall = true; //you are now small
-            rb.gravityScale = 1; // enable gravity
+            rbsmall.gravityScale = 1; // enable gravity
         }
         if (swappedPlayerSmall == true)
         { 
             if (Input.GetKey(KeyCode.D))
             {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
+                rbsmall.velocity = new Vector2(speed, rbsmall.velocity.y);
+                animator.SetBool("Iswalking", true);
+                sp.flipX = false;
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
+                rbsmall.velocity = new Vector2(-speed, rbsmall.velocity.y);
+                animator.SetBool("Iswalking", true);
+                sp.flipX = true;
             }
             else
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rbsmall.velocity = new Vector2(0, rbsmall.velocity.y);
+                animator.SetBool("Iswalking", false);
+                sp.flipX = false;
             }
-            if (Input.GetKey(KeyCode.Space) && grounded)
+            if (Input.GetKey(KeyCode.W) && grounded)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                rbsmall.velocity = new Vector2(rbsmall.velocity.x, jumpSpeed);
+                animator.SetBool("Jumping", true);
+                AudioSource.PlayClipAtPoint(jumpclip, new Vector2(rbsmall.position.x, rbsmall.position.y));
             }
         }
         if (swappedPlayerSmall == false)
         {
             var addpos = new Vector3(0, 1.4f, 0);
             this.transform.position = GameObject.Find("Player_big").transform.position + addpos;
-            rb.gravityScale = 0; // Disable gravity
+            rbsmall.gravityScale = 0; // Disable gravity
+            animator.SetBool("Jumping", false);
+            animator.SetBool("Iswalking", false);
+            animator.SetBool("Issmall", false);
         }
     }
 }
