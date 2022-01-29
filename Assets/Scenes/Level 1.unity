@@ -678,7 +678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &415058115
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,6 +1171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6943959067791402953, guid: 71f19f6f0bf458e4d8c08cfaa6d7b74c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6943959067791402964, guid: 71f19f6f0bf458e4d8c08cfaa6d7b74c, type: 3}
       propertyPath: m_Name
       value: Player_big
@@ -1417,15 +1421,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5832316106356877222, guid: dd0b54b97c9140a498d035c822a5c964, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5832316106356877222, guid: dd0b54b97c9140a498d035c822a5c964, type: 3}
       propertyPath: m_Color.g
-      value: 0.51491857
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5832316106356877222, guid: dd0b54b97c9140a498d035c822a5c964, type: 3}
       propertyPath: m_Color.r
-      value: 0.7924528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5832316106356877223, guid: dd0b54b97c9140a498d035c822a5c964, type: 3}
       propertyPath: m_Name
@@ -2299,6 +2303,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8292113146981924661, guid: c7d27c64708c1e840b2aefa20f5053da, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 875677185}
     - target: {fileID: 8292113146981924661, guid: c7d27c64708c1e840b2aefa20f5053da, type: 3}
       propertyPath: timeLeft
       value: 20
