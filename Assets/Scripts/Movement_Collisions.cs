@@ -15,77 +15,112 @@ public class Movement_Collisions : MonoBehaviour
         //print("I exist");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         //print(directionFromPlayer + " Entered Collision");
-        switch (directionFromPlayer)
+        // ignore bumping into invisible connections
+        if (!col.CompareTag("Connection"))
         {
-            case 'U':
-                player.canMoveUp = false;
-                break;
-            case 'D':
-                player.canMoveDown = false;
-                break;
-            case 'L':
-                player.canMoveLeft = false;
-                break;
-            case 'R':
-                player.canMoveRight = false;
-                break;
+            switch (directionFromPlayer)
+            {
+                case 'U':
+                    player.canMoveUp = false;
+                    break;
+                case 'D':
+                    player.canMoveDown = false;
+                    break;
+                case 'L':
+                    player.canMoveLeft = false;
+                    break;
+                case 'R':
+                    player.canMoveRight = false;
+                    break;
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        switch (directionFromPlayer)
+        if (!col.CompareTag("Connection"))
         {
-            case 'U':
-                player.canMoveUp = false;
-                if (col.CompareTag("Cable"))
-                {
-                    //player.
-                }
-                break;
-            case 'D':
-                player.canMoveDown = false;
-                break;
-            case 'L':
-                player.canMoveLeft = false;
-                break;
-            case 'R':
-                player.canMoveRight = false;
-                break;
-        }
-        //print(directionFromPlayer + " stating in collider");
-        if (col.CompareTag("Cable"))
-        {
-            //player.cableInProximity = true;
+            switch (directionFromPlayer)
+            {
+                case 'U':
+                    player.canMoveUp = false;
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableUp = true;
+                        player.cableUpObj = col.transform;
+                    }
+                    break;
+                case 'D':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableDown = true;
+                        player.cableDownObj = col.transform;
+                    }
+                    player.canMoveDown = false;
+                    break;
+                case 'L':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableLeft = true;
+                        player.cableLeftObj = col.transform;
+                    }
+                    player.canMoveLeft = false;
+                    break;
+                case 'R':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableRight = true;
+                        player.cableRightObj = col.transform;
+                    }
+                    player.canMoveRight = false;
+                    break;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
         //print(directionFromPlayer + " leaving collider");
-        switch (directionFromPlayer)
+        if (!col.CompareTag("Connection"))
         {
-            case 'U':
-                player.canMoveUp = true;
-                break;
-            case 'D':
-                player.canMoveDown = true;
-                break;
-            case 'L':
-                player.canMoveLeft = true;
-                break;
-            case 'R':
-                player.canMoveRight = true;
-                break;
-        }
-
-        if (col.CompareTag("Cable"))
-        {
-            //player.cableInProximity = false;
-            
+            switch (directionFromPlayer)
+            {
+                case 'U':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableUp = false;
+                        player.cableUpObj = null;
+                    }
+                    player.canMoveUp = true;
+                    break;
+                case 'D':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableDown = false;
+                        player.cableDownObj = null;
+                    }
+                    player.canMoveDown = true;
+                    break;
+                case 'L':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableLeft = false;
+                        player.cableLeftObj = null;
+                    }
+                    player.canMoveLeft = true;
+                    break;
+                case 'R':
+                    if (col.CompareTag("Cable"))
+                    {
+                        player.cableRight = false;
+                        player.cableRightObj = null;
+                    }
+                    player.canMoveRight = true;
+                    break;
+            }
         }
     }
 }

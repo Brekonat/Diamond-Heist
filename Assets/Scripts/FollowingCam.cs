@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class FollowingCam : MonoBehaviour
 {
-    [SerializeField] public GameObject thePlayerObject;
+    //[SerializeField] public GameObject thePlayerObject;
+    [SerializeField] private GameObject playerBigObject;
+    [SerializeField] private GameObject playerSmallObject; // give us the objects
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //playerBigObject = GameObject.Find("Player_big");
+        //playerSmallObject = GameObject.Find("Player_small");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(thePlayerObject.transform.position.x, thePlayerObject.transform.position.y, transform.position.z);
+
+            if (FindObjectOfType<PlayerBigMovement>().swappedPlayerBig == true) //if you are controling big
+            {
+                transform.position = new Vector3(playerBigObject.transform.position.x, playerBigObject.transform.position.y, transform.position.z); //focus on them!
+        }
+            if (FindObjectOfType<PlayerSmallMovement>().swappedPlayerSmall == true) //if you are controling small
+            {
+                transform.position = new Vector3(playerSmallObject.transform.position.x, playerSmallObject.transform.position.y, transform.position.z); //focus on them!
+            }
+
+        
     }
 }
