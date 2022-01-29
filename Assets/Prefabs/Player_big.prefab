@@ -13,9 +13,6 @@ GameObject:
   - component: {fileID: 6943959067791402966}
   - component: {fileID: 6943959067791402967}
   - component: {fileID: 6943959067791402955}
-  - component: {fileID: 8920615454338369231}
-  - component: {fileID: 4089921578590449304}
-  - component: {fileID: 7892246867111159924}
   m_Layer: 0
   m_Name: Player_big
   m_TagString: Player
@@ -137,80 +134,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b00c4bbdcfe1b40a3ed5f17ef8a82d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBox: {fileID: 8920615454338369231}
   speed: 4
-  jumpSpeed: 3
-  smallObject: {fileID: 5832316106356877223, guid: dd0b54b97c9140a498d035c822a5c964, type: 3}
-  hitboxDirectionOffset: {x: 2, y: 0, z: 0}
-  swappedPlayerBig: 0
---- !u!61 &8920615454338369231
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6943959067791402964}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.0022805, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 1}
-  m_EdgeRadius: 0
---- !u!61 &4089921578590449304
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6943959067791402964}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.40901297}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.18197405}
-  m_EdgeRadius: 0
---- !u!251 &7892246867111159924
-PlatformEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6943959067791402964}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 8
-  m_RotationalOffset: 0
-  m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
-  m_UseSideFriction: 0
-  m_UseSideBounce: 0
-  m_SideArc: 1
+  jumpSpeed: 4
