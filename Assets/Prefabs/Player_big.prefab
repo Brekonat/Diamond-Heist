@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 76d6e99250c7d8547ae6c03568cd8fc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 8920615454338369231}
   speed: 4
-  jumpSpeed: 4
+  jumpSpeed: 0
   smallObject: {fileID: 5832316106356877223, guid: dd0b54b97c9140a498d035c822a5c964, type: 3}
   hitboxDirectionOffset: {x: 2, y: 0, z: 0}
   swappedPlayerBig: 0
