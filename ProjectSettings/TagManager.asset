@@ -7,6 +7,12 @@ TagManager:
   - Cable
   - Connection
   - PuzzleManager
+  - Ground
+  - Enemies
+  - GameManager
+  - player_small
+  - player_big
+  - Door
   layers:
   - Default
   - TransparentFX
