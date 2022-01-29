@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBigMovement : MonoBehaviour
+public class PlayerSmallMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private CapsuleCollider2D col;
     [SerializeField] private BoxCollider2D hitBox;
-    [SerializeField] private float speed = 4;
-    [SerializeField] private float jumpSpeed = 4;
-    private bool grounded;
-    [SerializeField] private Vector3 hitboxDirectionOffset = new Vector3(2, 0, 0);
+    [SerializeField] private float speed = 8;
+    [SerializeField] private float jumpSpeed = 6;
     public bool swappedPlayer = false;
+    private bool grounded;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        hitboxDirectionOffset = new Vector3(2, 0, 0);
         hitBox = GetComponent<BoxCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,13 +26,6 @@ public class PlayerBigMovement : MonoBehaviour
             //print(grounded);
         }
             
-    }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Enemies" && Input.GetKeyDown(KeyCode.K))
-        {
-            Destroy(other.gameObject);
-        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -46,26 +38,20 @@ public class PlayerBigMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKey(KeyCode.Tab) && swappedPlayer == false)
         {
             print(swappedPlayer);
             swappedPlayer = true;
-
         }
-        if (swappedPlayer == false)
-            {
+        if (swappedPlayer == true)
+        { 
             if (Input.GetKey(KeyCode.D))
             {
                 rb.velocity = new Vector2(speed, rb.velocity.y);
-                hitboxDirectionOffset = new Vector3(2, 0, 0);
-                hitBox.offset = new Vector3(1.00228f, 0, 0);
             }
             else if (Input.GetKey(KeyCode.A))
             {
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
-                hitboxDirectionOffset = new Vector3(-2, 0, 0);
-                hitBox.offset = new Vector3(-1.00228f, 0, 0);
             }
             else
             {
@@ -76,9 +62,5 @@ public class PlayerBigMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             }
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position + hitboxDirectionOffset, new Vector2(4,2));
     }
 }
