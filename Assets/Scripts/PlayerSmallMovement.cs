@@ -6,17 +6,15 @@ public class PlayerSmallMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private CapsuleCollider2D col;
-    [SerializeField] private BoxCollider2D hitBox;
     [SerializeField] private float speed = 8;
     [SerializeField] private float jumpSpeed = 6;
-    public bool swappedPlayer = false;
+    public bool swappedPlayerSmall = false;
     private bool grounded;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        hitBox = GetComponent<BoxCollider2D>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,7 +23,13 @@ public class PlayerSmallMovement : MonoBehaviour
             grounded = true;
             //print(grounded);
         }
-            
+        if (collision.collider.CompareTag("Player"))
+        {
+            FindObjectOfType<PlayerBigMovement>().swappedPlayerBig = true;
+            swappedPlayerSmall = false;
+            print(swappedPlayerSmall);
+        }
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -38,12 +42,13 @@ public class PlayerSmallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Tab) && swappedPlayer == false)
+        if (Input.GetKey(KeyCode.Tab) && swappedPlayerSmall == false) //if you press tab and you aren't small
         {
-            print(swappedPlayer);
-            swappedPlayer = true;
+            print(swappedPlayerSmall);
+            swappedPlayerSmall = true; //you are now small
+            rb.gravityScale = 1; // enable gravity
         }
-        if (swappedPlayer == true)
+        if (swappedPlayerSmall == true)
         { 
             if (Input.GetKey(KeyCode.D))
             {
@@ -61,6 +66,12 @@ public class PlayerSmallMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             }
+        }
+        if (swappedPlayerSmall == false)
+        {
+            var addpos = new Vector3(0, 1.4f, 0);
+            this.transform.position = GameObject.Find("Player_big").transform.position + addpos;
+            rb.gravityScale = 0; // Disable gravity
         }
     }
 }

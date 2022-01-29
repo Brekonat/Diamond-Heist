@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5832316106356877216}
   m_Layer: 3
   m_Name: Player_Small
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,10 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97672ae3ad7f43148bdc93ad6ab45b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBox: {fileID: 0}
   speed: 8
-  jumpSpeed: 6
-  swappedPlayer: 0
+  jumpSpeed: 8
+  swappedPlayerSmall: 0
 --- !u!50 &5832316106356877219
 Rigidbody2D:
   serializedVersion: 4

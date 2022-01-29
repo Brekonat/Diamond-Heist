@@ -9,15 +9,17 @@ public class PlayerBigMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitBox;
     [SerializeField] private float speed = 4;
     [SerializeField] private float jumpSpeed = 4;
+    [SerializeField] private GameObject smallObject;
     private bool grounded;
     [SerializeField] private Vector3 hitboxDirectionOffset = new Vector3(2, 0, 0);
-    public bool swappedPlayer = false;
+    public bool swappedPlayerBig = true;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         hitboxDirectionOffset = new Vector3(2, 0, 0);
         hitBox = GetComponent<BoxCollider2D>();
+        swappedPlayerBig = true;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,7 +28,12 @@ public class PlayerBigMovement : MonoBehaviour
             grounded = true;
             //print(grounded);
         }
-            
+        if (collision.collider.CompareTag("Player"))
+        {
+            swappedPlayerBig = false;
+            print(swappedPlayerBig);
+        }
+
     }
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -47,13 +54,12 @@ public class PlayerBigMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Tab) && swappedPlayer == false)
+        if (Input.GetKey(KeyCode.Tab) && swappedPlayerBig == true)//if you press tab and you aren't big
         {
-            print(swappedPlayer);
-            swappedPlayer = true;
-
+            print(swappedPlayerBig);
+            swappedPlayerBig = false;
         }
-        if (swappedPlayer == false)
+        if (swappedPlayerBig == true)
             {
             if (Input.GetKey(KeyCode.D))
             {
