@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     GameObject mainButtonsUI;
     [SerializeField]
     GameObject interactUINotification;
+    [SerializeField]
+    GameObject EndScreen;
 
     bool stress = false;
 
@@ -98,5 +100,10 @@ public class GameManager : MonoBehaviour
     public void UINotification(bool active)
     {
         interactUINotification.SetActive(active);
+    }
+
+    public void Credits()
+    {
+        EndScreen.SetActive(true);
     }
 }
