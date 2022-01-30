@@ -16,6 +16,8 @@ TagManager:
   - Flipper
   - Breakable
   - Barrier
+  - glass
+  - gem
   layers:
   - Default
   - TransparentFX

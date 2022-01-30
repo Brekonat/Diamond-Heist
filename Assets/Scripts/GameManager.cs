@@ -105,5 +105,6 @@ public class GameManager : MonoBehaviour
     public void Credits()
     {
         EndScreen.SetActive(true);
+        mainGame.SetActive(false);
     }
 }

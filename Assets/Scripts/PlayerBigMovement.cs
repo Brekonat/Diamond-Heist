@@ -19,6 +19,7 @@ public class PlayerBigMovement : MonoBehaviour
     public AudioClip[] footStepAudio;
     public AudioSource BigAudioSource;
     public AudioClip Punchclip;
+    [SerializeField] GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerBigMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         sp = GetComponent<SpriteRenderer>();
         BigAudioSource = GetComponent<AudioSource>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -68,6 +70,20 @@ public class PlayerBigMovement : MonoBehaviour
             AudioSource.PlayClipAtPoint(Punchclip, new Vector2(rb.position.x, rb.position.y));
             other.GetComponent<Breakable>().Wreck();
         }
+        if (other.CompareTag("glass") && Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetBool("Punching", true);
+            AudioSource.PlayClipAtPoint(Punchclip, new Vector2(rb.position.x, rb.position.y));
+            other.GetComponent<GlassScript>().GlassSmash();
+        }
+        if (other.CompareTag("gem") && Input.GetKeyDown(KeyCode.E))
+        {
+            animator.SetBool("Grabbing", true);
+        }
+    }
+    public void FinishGame()
+    {
+        gameManager.Credits();
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -81,7 +97,7 @@ public class PlayerBigMovement : MonoBehaviour
     void Update()
     {
         //print(rb.velocity);
-        if (rb.velocity.x > 0)
+        if (rb.velocity.x > 1)
         {
             animator.SetBool("Iswalking", true);
             sp.flipX = false;
