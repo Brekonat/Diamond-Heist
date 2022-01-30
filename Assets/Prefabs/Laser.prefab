@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7886415752017963286}
   - component: {fileID: 6016679443152381718}
   - component: {fileID: 7561410082161666589}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,10 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d1b933ec7bde04aa794febbb18630e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bigPlayer: {fileID: 6943959067791402964, guid: 71f19f6f0bf458e4d8c08cfaa6d7b74c, type: 3}
-  laserrb: {fileID: 0}
-  startPos: {x: 0, y: 0}
-  speed: 3
+  laserrb: {fileID: 6016679443152381718}
 --- !u!212 &7886415752017963286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,7 +110,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -121,7 +118,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 6
 --- !u!61 &7561410082161666589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,7 +136,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.32, y: 1.32}
+    oldSize: {x: 3.3, y: 3.3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
