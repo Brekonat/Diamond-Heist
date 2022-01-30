@@ -98,7 +98,7 @@ public class PlayerBigMovement : MonoBehaviour
         }
         if (swappedPlayerBig)
         {
-            if (Input.GetKey(KeyCode.Tab) && swappedPlayerBig == true)//if you press tab and you are big
+            if (Input.GetKey(KeyCode.Tab))//if you press tab and you are big
             {
                 print(swappedPlayerBig);
                 swappedPlayerBig = false; //no longer big
@@ -110,22 +110,20 @@ public class PlayerBigMovement : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                if (swappedPlayerBig == true)
-                {
+                
                     rb.velocity = new Vector2(speed, rb.velocity.y);
                     hitboxDirectionOffset = new Vector3(1, 0, 0);
                     hitBox.offset = new Vector3(0.5238624f, 0, 0);
 
-                }
+                
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                if (swappedPlayerBig == true)
-                {
+                
                     rb.velocity = new Vector2(-speed, rb.velocity.y);
                     hitboxDirectionOffset = new Vector3(-1, 0, 0);
                     hitBox.offset = new Vector3(-0.5238624f, 0, 0);
-                }
+                
             }
         }
         else

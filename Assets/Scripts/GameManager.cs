@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (stress)
             puzzle.GetComponentInChildren<MiniGameManager>().timer = true;
         else
-            puzzle.GetComponentInChildren<MiniGameManager>().timer = false;
+            puzzle.GetComponentInChildren<MiniGameManager>().RemoveTimer();
         mainGame.SetActive(false);
         linkedObject = link;
     }
