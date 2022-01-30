@@ -9,7 +9,7 @@ public class TurretScript : MonoBehaviour
     private BoxCollider2D boxc;
     [SerializeField] private Rigidbody2D laserrb;
     private float cooldowntimer = 4f;
-    private float firerate = 20f;
+    private float firerate = 65f;
     private bool canfire;
     // Start is called before the first frame update
     void Start()
