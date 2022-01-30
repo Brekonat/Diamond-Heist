@@ -24,7 +24,11 @@ public class PlayerSmallMovement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         SmallAudioSource = GetComponent<AudioSource>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void FootSounds()
+    {
+        AudioSource.PlayClipAtPoint(footStepAudio[Random.Range(0, footStepAudio.Length)], new Vector2(rbsmall.position.x, rbsmall.position.y));
+    }
+        private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
         {
