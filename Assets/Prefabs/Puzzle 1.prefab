@@ -769,7 +769,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8292113146981924660}
-  - {fileID: 8292113147304613009}
   - {fileID: 8292113147571313206}
   - {fileID: 8292113147794518425}
   - {fileID: 6378390419788106404}
@@ -2970,6 +2969,7 @@ MonoBehaviour:
   startCable: {fileID: 8292113147358464948}
   endCable: {fileID: 8292113146515605759}
   player: {fileID: 8292113147308100720}
+  manager: {fileID: 0}
   puzzleComplete: 0
   timeLeft: 10
   timeToCompletePuzzle: 60
@@ -2999,11 +2999,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8292113147304612973}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.9002235, y: 5.7407794, z: 29.021118}
+  m_LocalPosition: {x: 0.5, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8292113145996357494}
-  m_RootOrder: 1
+  m_Father: {fileID: 8292113147308100721}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8292113147304612974
 Camera:
@@ -3087,7 +3087,7 @@ Transform:
   - {fileID: 8292113146547237816}
   - {fileID: 8292113145941230209}
   m_Father: {fileID: 8292113145996357494}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &8292113147571313207
 Grid:
@@ -3134,7 +3134,7 @@ Transform:
   - {fileID: 84409245996745646}
   - {fileID: 6193161537464625258}
   m_Father: {fileID: 8292113145996357494}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &792033416046305374
 PrefabInstance:
@@ -3193,11 +3193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbdacc07c328a7345b1f76d052bbffc5, type: 3}
---- !u!4 &8292113146515605758 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8786064149735352480, guid: dbdacc07c328a7345b1f76d052bbffc5, type: 3}
-  m_PrefabInstance: {fileID: 792033416046305374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8292113146515605759 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8786064149735352481, guid: dbdacc07c328a7345b1f76d052bbffc5, type: 3}
@@ -3206,9 +3201,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dee387f2b680164e83162fbda6398d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd86ffc26a512e4a9b25a4a225c2ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8292113146515605758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8786064149735352480, guid: dbdacc07c328a7345b1f76d052bbffc5, type: 3}
+  m_PrefabInstance: {fileID: 792033416046305374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2867357693799734728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3284,7 +3284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7118677031764803359, guid: 75f12812a0d9d924b821748c5c62817f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7118677031764803359, guid: 75f12812a0d9d924b821748c5c62817f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3331,6 +3331,11 @@ PrefabInstance:
 --- !u!4 &6378390419788106404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7118677031764803359, guid: 75f12812a0d9d924b821748c5c62817f, type: 3}
+  m_PrefabInstance: {fileID: 4201303481076364731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8292113147308100721 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5286530766133426634, guid: 75f12812a0d9d924b821748c5c62817f, type: 3}
   m_PrefabInstance: {fileID: 4201303481076364731}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8292113147308100720 stripped
@@ -3480,7 +3485,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dee387f2b680164e83162fbda6398d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd86ffc26a512e4a9b25a4a225c2ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8292113147880240652

@@ -155,6 +155,7 @@ MonoBehaviour:
   startCable: {fileID: 287336357}
   endCable: {fileID: 1877828846}
   player: {fileID: 505471073}
+  manager: {fileID: 0}
   puzzleComplete: 0
   timeLeft: 10
   timeToCompletePuzzle: 60
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdeabb4adc1d0648af0368628950eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd86ffc26a512e4a9b25a4a225c2ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &505471073 stripped
@@ -3321,7 +3322,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdeabb4adc1d0648af0368628950eed, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd86ffc26a512e4a9b25a4a225c2ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1877828847 stripped
@@ -3562,6 +3563,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801528562795912806, guid: e6ab8b2159008dc46b42ed96e95f1f78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906632020800703342, guid: e6ab8b2159008dc46b42ed96e95f1f78, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906632020800703342, guid: e6ab8b2159008dc46b42ed96e95f1f78, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906632020800703342, guid: e6ab8b2159008dc46b42ed96e95f1f78, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906632020800703342, guid: e6ab8b2159008dc46b42ed96e95f1f78, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
