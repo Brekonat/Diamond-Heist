@@ -15,7 +15,7 @@ public class MiniGameManager : MonoBehaviour
 
     [SerializeField]    // only to see the value in the inspector
     bool puzzleComplete = false;
-    bool timer = true;
+    public bool timer = true;
     [SerializeField]
     float timeLeft = 60f;
     [SerializeField]
@@ -121,7 +121,9 @@ public class MiniGameManager : MonoBehaviour
                 {
                     // the puzzle is complete, do something
                     puzzleComplete = true;
+                    manager.UINotification(false);
                     manager.LeavePuzzle(transform.parent.gameObject);
+
                 }
             }
         }

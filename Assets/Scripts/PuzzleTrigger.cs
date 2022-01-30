@@ -27,6 +27,7 @@ public class PuzzleTrigger : MonoBehaviour
         if (col.CompareTag("player_small"))
         {
             canEnter = true;
+            manager.UINotification(true);
         }
     }
 
@@ -36,13 +37,13 @@ public class PuzzleTrigger : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                manager.UINotification(false);
                 print("enter puzzle");
                 if (isTurret)
                 {
                     Turret.tag = "Enemies";
                 }
                 manager.EnterPuzzle(puzzle, link);
-
             }
         }
     }
@@ -52,6 +53,7 @@ public class PuzzleTrigger : MonoBehaviour
         if (col.CompareTag("player_small"))
         {
             canEnter = false;
+            manager.UINotification(false);
         }
     }
 }

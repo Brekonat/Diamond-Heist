@@ -33,6 +33,7 @@ public class MiniGameMovement : MonoBehaviour
     Cable downCable;
 
     MiniGameManager manager;
+    GameManager gManager;
     public bool disablePlayer = false;
 
     public float playerFacing;
@@ -41,6 +42,7 @@ public class MiniGameMovement : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<MiniGameManager>();
+        gManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -70,12 +72,19 @@ public class MiniGameMovement : MonoBehaviour
                 rightCable = cableRightObj.GetComponentInParent<Cable>();
                 cableInProximity = true;
             }
-
+            if (!cableUp && !cableDown && !cableLeft && !cableRight)
+                cableInProximity = false;
             if (cableInProximity)
             {
+                gManager.UINotification(true);
                 RotateCable();
+
             }
+            else
+                gManager.UINotification(false);
         }
+        else
+            gManager.UINotification(false);
     }
 
     void Move()
