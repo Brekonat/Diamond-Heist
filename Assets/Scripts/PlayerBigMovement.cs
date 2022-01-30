@@ -55,7 +55,7 @@ public class PlayerBigMovement : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemies" && Input.GetKeyDown(KeyCode.K))
+        if (other.CompareTag("Enemies") && Input.GetKeyDown(KeyCode.Space) && !other.CompareTag("Barrier"))
         {
             animator.SetBool("Punching", true);
             AudioSource.PlayClipAtPoint(Punchclip, new Vector2(rb.position.x, rb.position.y));
@@ -97,39 +97,46 @@ public class PlayerBigMovement : MonoBehaviour
             sp.flipX = false;
         }
 
-        if (Input.GetKey(KeyCode.Tab) && swappedPlayerBig == true)//if you press tab and you are big
+        if (swappedPlayerBig)
         {
-            print(swappedPlayerBig);
-            swappedPlayerBig = false; //no longer big
-        }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.Tab))//if you press tab and you are big
             {
-                if (swappedPlayerBig == true)
-                {
+                print(swappedPlayerBig);
+                swappedPlayerBig = false; //no longer big
+            }
+            // just for the player of the game - won't have any real functionality
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                animator.SetBool("Punching", true);
+                AudioSource.PlayClipAtPoint(Punchclip, new Vector2(rb.position.x, rb.position.y));
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                
                     rb.velocity = new Vector2(speed, rb.velocity.y);
                     hitboxDirectionOffset = new Vector3(1, 0, 0);
                     hitBox.offset = new Vector3(0.5238624f, 0, 0);
 
-                }
+                
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                if (swappedPlayerBig == true)
-                {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
-                hitboxDirectionOffset = new Vector3(-1, 0, 0);
-                hitBox.offset = new Vector3(-0.5238624f, 0, 0);
-                }
+                
+                    rb.velocity = new Vector2(-speed, rb.velocity.y);
+                    hitboxDirectionOffset = new Vector3(-1, 0, 0);
+                    hitBox.offset = new Vector3(-0.5238624f, 0, 0);
+                
             }
-            else
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
+            
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
             //if (Input.GetKey(KeyCode.W) && grounded)
             //{
             //    rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             //}
-
     }
     private void OnDrawGizmos()
     {
