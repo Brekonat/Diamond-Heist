@@ -11,6 +11,7 @@ public class LaserScript : MonoBehaviour
     {
         laserrb.velocity = new Vector2(-4, 0);
         Destroy(gameObject, 1f);
+        Physics2D.IgnoreLayerCollision(7, 8);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

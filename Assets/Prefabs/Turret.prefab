@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6bcd98d39225b14f9821a9925171977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserrb: {fileID: 6016679443152381718, guid: 5e2fa359e20219c44b357458f162f570, type: 3}
 --- !u!61 &3725009443573587927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -422,5 +423,6 @@ MonoBehaviour:
   link: {fileID: 3725009442255662740}
   manager: {fileID: 0}
   puzzle: {fileID: 0}
+  canEnter: 0
   isTurret: 1
   Turret: {fileID: 3725009443573586987}

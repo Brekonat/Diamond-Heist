@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     GameObject mainButtonsUI;
     [SerializeField]
     GameObject interactUINotification;
+    [SerializeField]
+    GameObject EndScreen;
 
     bool stress = false;
 
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (stress)
             puzzle.GetComponentInChildren<MiniGameManager>().timer = true;
         else
-            puzzle.GetComponentInChildren<MiniGameManager>().timer = false;
+            puzzle.GetComponentInChildren<MiniGameManager>().RemoveTimer();
         mainGame.SetActive(false);
         linkedObject = link;
     }
@@ -98,5 +100,11 @@ public class GameManager : MonoBehaviour
     public void UINotification(bool active)
     {
         interactUINotification.SetActive(active);
+    }
+
+    public void Credits()
+    {
+        EndScreen.SetActive(true);
+        mainGame.SetActive(false);
     }
 }
